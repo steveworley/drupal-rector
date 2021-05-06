@@ -179,5 +179,7 @@ if ($major > 7) {
 }
 // @todo This was added in 8.8.x, which means 8.7.x would fail on this but
 //   people should upgrade to 8.9.x anyways.
-require_once $drupalRoot . "/core/tests/Drupal/TestTools/PhpUnitCompatibility/PhpUnit{$major}/TestCompatibilityTrait.php";
-class_alias("Drupal\TestTools\PhpUnitCompatibility\PhpUnit{$major}\TestCompatibilityTrait", '\Drupal\Tests\PhpunitVersionDependentTestCompatibilityTrait');
+if (file_exists($drupalRoot . "/core/tests/Drupal/TestTools/PhpUnitCompatibility/PhpUnit{$major}/TestCompatibilityTrait.php")) {
+  require_once $drupalRoot . "/core/tests/Drupal/TestTools/PhpUnitCompatibility/PhpUnit{$major}/TestCompatibilityTrait.php";
+  class_alias("Drupal\TestTools\PhpUnitCompatibility\PhpUnit{$major}\TestCompatibilityTrait", '\Drupal\Tests\PhpunitVersionDependentTestCompatibilityTrait');
+}
